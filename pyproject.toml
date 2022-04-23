@@ -26,6 +26,12 @@ warn_unreachable = true
 warn_unused_configs = true
 no_implicit_reexport = true
 
+[tool.pytest.ini_options]
+testpaths = [
+    "tests"
+]
+python_files = ["test_*.py","tests_*.py"]
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

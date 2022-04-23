@@ -1,6 +1,6 @@
-
-
 install:
 	poetry install
 test: install
-	pytest
+	poetry run pytest
+type_check:
+	poetry run mypy src
