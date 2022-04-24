@@ -1,4 +1,4 @@
-from Node import Node
+from src.core.Node import Node
 from typing import Iterable, Optional, Any
 
 
@@ -36,15 +36,44 @@ class LinkedList:
         return self._len
 
     def __getitem__(self, index: int) -> Any:
-        if not isinstance(index, int):
-            raise TypeError(f"'{type(index)}' not supported for indexation")
+        self._check_if_index_is_in_bound(index)
+        self._check_if_index_is_integer(index)
 
+        temp_node: Node = self._head
+
+        self._traverse_list(index, temp_node)
+
+        return temp_node.data
+
+    def __setitem__(self, index: int, value: Any) -> None:
+        self._check_if_index_is_in_bound(index)
+        self._check_if_index_is_integer(index)
+
+        temp_node: Node = self._head
+
+        self._traverse_list(index, temp_node)
+
+        temp_node.data = value
+
+    def _check_if_index_is_in_bound(self, index: int) -> None:
         if index >= self._len:
             raise IndexError(f"{index} index out of range")
 
-        new_head: Node = self._head.copy()
-        for _ in range(index):
-            if new_head.next:
-                new_head = new_head.next
+    @staticmethod
+    def _check_if_index_is_integer(index: int):
+        if not isinstance(index, int):
+            raise TypeError(f"'{type(index)}' not supported for indexation")
 
-        return new_head.data
+    @staticmethod
+    def _traverse_list(index: int, temp_node: Node):
+        for _ in range(index):
+            if temp_node.next:
+                temp_node = temp_node.next
+
+
+if __name__ == "__main__":
+    konche = [1,2, 3]
+    gosho = LinkedList(konche)
+    gosho[1] = 5
+    print(gosho[1])
+    print(1)
