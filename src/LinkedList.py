@@ -1,5 +1,5 @@
 from Node import Node
-from typing import Iterable, Optional, Any, Type
+from typing import Iterable, Optional, Any, Type, Union
 
 
 class LinkedList:
@@ -44,14 +44,7 @@ class LinkedList:
 
         new_head: Node = self._head.copy()
         for _ in range(index):
-            new_head = new_head.next
+            if new_head.next:
+                new_head = new_head.next
 
         return new_head.data
-
-
-if __name__ == "__main__":
-    konche = [1, 2, 3]
-    gosho = LinkedList(konche)
-    print(len(gosho))
-    print(gosho[2])
-    print(1)

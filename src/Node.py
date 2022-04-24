@@ -1,6 +1,7 @@
 from typing import Any, TypeVar, Union, Optional
 import copy
 
+
 class Node:
     def __init__(self, data: Any = None, prev_node: Union['Node', None] = None, next_node: Union['Node', None] = None) -> None:
         self._data: Any = data
