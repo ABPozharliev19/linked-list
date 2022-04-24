@@ -1,5 +1,5 @@
 from Node import Node
-from typing import Iterable, Optional, Any, Type, Union
+from typing import Iterable, Optional, Any
 
 
 class LinkedList:
@@ -16,7 +16,7 @@ class LinkedList:
                 _ = iter(args)
             except TypeError:
                 raise TypeError(f"'{type(args)}' not supported for constructor. \n"
-                                f"Call with Iterator instead.")
+                                f"Call with iterable instead.")
 
             for item in args:
                 if not self._is_head_initialized:
