@@ -30,6 +30,9 @@ no_implicit_reexport = true
 testpaths = [
     "tests"
 ]
+pythonpath = [
+    ".", "src/core"
+]
 python_files = ["test_*.py","tests_*.py"]
 
 [build-system]

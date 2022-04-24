@@ -1,4 +1,4 @@
-from src.core.Node import Node
+from Node import Node
 from typing import Iterable, Optional, Any
 
 
@@ -35,13 +35,24 @@ class LinkedList:
     def __len__(self) -> int:
         return self._len
 
+    def __str__(self) -> str:
+        str_to_return = "["
+        temp_node: Node = self._head
+        for _ in range(self._len - 1):
+            str_to_return = str_to_return + str(temp_node.data) + ","
+            temp_node = temp_node.next
+
+        str_to_return = str_to_return + str(temp_node.data) + "]"
+
+        return str_to_return
+
     def __getitem__(self, index: int) -> Any:
         self._check_if_index_is_in_bound(index)
         self._check_if_index_is_integer(index)
 
-        temp_node: Node = self._head
+        temp_node: Node = self._head.copy()
 
-        self._traverse_list(index, temp_node)
+        temp_node = self._traverse_list(index, temp_node)
 
         return temp_node.data
 
@@ -51,7 +62,7 @@ class LinkedList:
 
         temp_node: Node = self._head
 
-        self._traverse_list(index, temp_node)
+        temp_node = self._traverse_list(index, temp_node)
 
         temp_node.data = value
 
@@ -60,20 +71,13 @@ class LinkedList:
             raise IndexError(f"{index} index out of range")
 
     @staticmethod
-    def _check_if_index_is_integer(index: int):
+    def _check_if_index_is_integer(index: int) -> None:
         if not isinstance(index, int):
             raise TypeError(f"'{type(index)}' not supported for indexation")
 
     @staticmethod
-    def _traverse_list(index: int, temp_node: Node):
+    def _traverse_list(index: int, temp_node: Node) -> Node:
         for _ in range(index):
             if temp_node.next:
                 temp_node = temp_node.next
-
-
-if __name__ == "__main__":
-    konche = [1,2, 3]
-    gosho = LinkedList(konche)
-    gosho[1] = 5
-    print(gosho[1])
-    print(1)
+        return temp_node

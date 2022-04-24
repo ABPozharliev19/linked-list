@@ -8,3 +8,21 @@ def test_list_getitem(list_with_random_data):
 
 def test_list_length(list_with_random_data):
     assert len(list_with_random_data) == 5
+
+
+def test_list_setitem1(list_with_random_data):
+    list_with_random_data[1] = 5
+    assert list_with_random_data[0] == 1
+    assert list_with_random_data[1] == 5
+    assert list_with_random_data[2] == 3
+    assert list_with_random_data[3] == 4
+    assert list_with_random_data[4] == 5
+
+
+def test_list_setitem2(list_with_random_data):
+    list_with_random_data[3] = 4
+    assert list_with_random_data[0] == 1
+    assert list_with_random_data[1] == 2
+    assert list_with_random_data[2] == 3
+    assert list_with_random_data[3] == 4
+    assert list_with_random_data[4] == 5
