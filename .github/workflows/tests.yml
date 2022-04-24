@@ -1,4 +1,4 @@
-name: Lint, Type Check and Run Tests
+name: Test and Type Check
 
 on:
   push:
@@ -7,39 +7,21 @@ on:
     branches: [ main ]
 
 jobs:
-  setup-python:
+  lint-type-check-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set Up Python 3.9
+      - name : Set up Python 3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-
-  setup-poetry:
-    runs-on: ubuntu-latest
-    needs: setup-python
-    steps:
-      - uses: actions/checkout@v2
       - name: Install Poetry
         uses: snok/install-poetry@v1
       - name: Install Dependencies
         run: make install
-
-  lint-and-type-check:
-    runs-on: ubuntu-latest
-    needs: setup-poetry
-    steps:
-      - uses: actions/checkout@v2
-      - name: Lint
+      - name: Run Linting
         run: make lint
-      - name: Type Check
+      - name: Run Type Checking
         run: make type_check
-
-  run-tests:
-    runs-on: ubuntu-latest
-    needs: lint-and-type-check
-    steps:
-      - uses: actions/checkout@v2
       - name: Run Tests
         run: make test
