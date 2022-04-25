@@ -1,10 +1,10 @@
-def test_empty_node_data(empty_node):
-    assert empty_node.data is None
+def test_empty_node_data(node_empty):
+    assert node_empty.data is None
 
 
-def test_empty_node_prev(empty_node):
-    assert empty_node.prev is None
+def test_empty_node_prev(node_empty):
+    assert node_empty.prev is None
 
 
-def test_empty_node_next(empty_node):
-    assert empty_node.next is None
+def test_empty_node_next(node_empty):
+    assert node_empty.next is None

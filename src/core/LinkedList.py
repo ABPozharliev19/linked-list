@@ -36,15 +36,19 @@ class LinkedList:
         return self._len
 
     def __str__(self) -> str:
-        str_to_return = "["
-        temp_node: Node = self._head
-        for _ in range(self._len - 1):
-            str_to_return = str_to_return + str(temp_node.data) + ","
-            temp_node = temp_node.next
+        if self._head.data is not None:
+            str_to_return = "["
+            temp_node: Node = self._head
+            for _ in range(self._len - 1):
+                str_to_return = str_to_return + str(temp_node.data) + ","
+                temp_node = temp_node.next
 
-        str_to_return = str_to_return + str(temp_node.data) + "]"
+            str_to_return = str_to_return + str(temp_node.data) + "]"
 
-        return str_to_return
+            return str_to_return
+
+        else:
+            return "[]"
 
     def __getitem__(self, index: int) -> Any:
         self._check_if_index_is_in_bound(index)
@@ -65,6 +69,16 @@ class LinkedList:
         temp_node = self._traverse_list(index, temp_node)
 
         temp_node.data = value
+
+    def append(self, element: Any) -> None:
+        if not self._is_head_initialized:
+            self._head.data = element
+            self._is_head_initialized = True
+        else:
+            new_node: Node = Node(element, self._tail)
+            self._tail.next = new_node
+            self._tail = new_node
+        self._len = self._len + 1
 
     def _check_if_index_is_in_bound(self, index: int) -> None:
         if index >= self._len:
