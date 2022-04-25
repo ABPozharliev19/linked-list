@@ -80,6 +80,29 @@ class LinkedList:
             self._tail = new_node
         self._len = self._len + 1
 
+    def clear(self) -> None:
+        self._head = Node()
+        self._tail = self._head
+        self._is_head_initialized = False
+        self._len = 0
+
+    def count(self, value: Any) -> int:
+        temp_node: Node = self._head
+
+        counter: int = 0
+
+        for _ in range(self._len):
+            if temp_node.data == value:
+                counter = counter + 1
+            if temp_node.next:
+                temp_node = temp_node.next
+
+        return counter
+
+    def extend(self, contents: Iterable[Any]):
+        for item in contents:
+            self.append(item)
+
     def _check_if_index_is_in_bound(self, index: int) -> None:
         if index >= self._len:
             raise IndexError(f"{index} index out of range")

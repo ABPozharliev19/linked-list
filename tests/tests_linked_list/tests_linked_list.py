@@ -55,3 +55,55 @@ def test_list_append(list_with_random_data):
 
     assert list_with_random_data[5] == 1
     assert list_with_random_data[6] == 2
+
+
+def test_list_clear(list_with_random_data):
+    list_with_random_data.clear()
+    with pytest.raises(IndexError):
+        list_with_random_data[0] = 1
+
+
+def test_list_count1(list_with_random_data):
+    counter: int = list_with_random_data.count(1)
+    assert counter == 1
+
+
+def test_list_count2(list_with_random_data):
+    for i in range(len(list_with_random_data)):
+        list_with_random_data[i] = 1
+    counter: int = list_with_random_data.count(1)
+
+    assert counter == len(list_with_random_data)
+
+
+def test_empty_list_count1(list_empty):
+    count: int = list_empty.count(1)
+    assert count == 0
+
+
+def test_empty_list_count2(list_empty):
+    for _ in range(10):
+        list_empty.append(1)
+
+    count: int = list_empty.count(1)
+    assert count == len(list_empty)
+
+
+def test_list_extend(list_with_random_data):
+    temp_list = [1, 2, 3]
+    list_with_random_data.extend(temp_list)
+    assert list_with_random_data[0] == 1
+    assert list_with_random_data[1] == 2
+    assert list_with_random_data[2] == 3
+    assert list_with_random_data[3] == 4
+    assert list_with_random_data[4] == 5
+    assert list_with_random_data[5] == 1
+    assert list_with_random_data[6] == 2
+    assert list_with_random_data[7] == 3
+
+def test_empty_list_extend(list_empty):
+    temp_list = [1, 2, 3]
+    list_empty.extend(temp_list)
+    assert list_empty[0] == 1
+    assert list_empty[1] == 2
+    assert list_empty[2] == 3
