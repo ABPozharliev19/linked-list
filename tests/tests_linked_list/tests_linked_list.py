@@ -101,6 +101,7 @@ def test_list_extend(list_with_random_data):
     assert list_with_random_data[6] == 2
     assert list_with_random_data[7] == 3
 
+
 def test_empty_list_extend(list_empty):
     temp_list = [1, 2, 3]
     list_empty.extend(temp_list)

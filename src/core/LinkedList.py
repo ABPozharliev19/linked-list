@@ -51,8 +51,8 @@ class LinkedList:
             return "[]"
 
     def __getitem__(self, index: int) -> Any:
-        self._check_if_index_is_in_bound(index)
         self._check_if_index_is_integer(index)
+        self._check_if_index_is_in_bound(index)
 
         temp_node: Node = self._head.copy()
 
@@ -61,8 +61,8 @@ class LinkedList:
         return temp_node.data
 
     def __setitem__(self, index: int, value: Any) -> None:
-        self._check_if_index_is_in_bound(index)
         self._check_if_index_is_integer(index)
+        self._check_if_index_is_in_bound(index)
 
         temp_node: Node = self._head
 
@@ -99,9 +99,35 @@ class LinkedList:
 
         return counter
 
-    def extend(self, contents: Iterable[Any]):
+    def extend(self, contents: Iterable[Any]) -> None:
         for item in contents:
             self.append(item)
+
+    def index(self, index: int) -> int:
+        pass
+
+    def insert(self, index: int, element: Any) -> None:
+        self._check_if_index_is_integer(index)
+
+        if index == -1:
+            new_node: Node = Node(element)
+            new_node.next = self._head
+            self._head.prev = new_node
+            self._head = new_node
+
+        elif index == self._len - 1:
+            new_node: Node = Node(element, self._tail)
+            self._tail.next = new_node
+            self._tail = new_node
+
+        else:
+            temp_node: Node = self._head
+            temp_node = self._traverse_list(index, temp_node)
+            new_node: Node = Node(element, temp_node, temp_node.next)
+            temp_node.next.prev = new_node
+            temp_node.next = new_node
+
+        self._len = self._len + 1
 
     def _check_if_index_is_in_bound(self, index: int) -> None:
         if index >= self._len:
