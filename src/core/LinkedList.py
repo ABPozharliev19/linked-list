@@ -135,6 +135,70 @@ class LinkedList:
             else:
                 raise ValueError("list is empty, cannot insert into an empty list")
 
+    def remove(self, value: Any) -> bool:
+        temp_node: Node = self._head
+
+        has_deleted_anything: bool = False
+
+        for index in range(self._len + 1):
+            if temp_node.data == value:
+                if index == 0:
+                    if self._len == 0:
+                        self._head.data = 0
+                        self._len = 0
+
+                        self._is_head_initialized = False
+
+                        has_deleted_anything = True
+
+                        break
+
+                    else:
+                        self._head.next.prev = None
+                        self._head = self._head.next
+
+                        self._len = self._len - 1
+
+                        has_deleted_anything = True
+
+                        break
+
+                elif index == self._len - 1:
+                    if self._len == 1:
+                        self._head.data = None
+                        self._len = 0
+
+                        self._is_head_initialized = False
+
+                        has_deleted_anything = True
+
+                        break
+
+                    else:
+                        self._tail = self._tail.prev
+                        self._tail.next = None
+
+                        self._len = self._len - 1
+
+                        has_deleted_anything = True
+
+                        break
+
+                elif value == temp_node.data:
+                    temp_node.prev.next = temp_node.next
+                    temp_node.next.prev = temp_node.prev
+
+                    self._len = self._len - 1
+
+                    as_deleted_anything = True
+
+                    break
+
+            if temp_node.next is not None:
+                temp_node = temp_node.next
+
+        return has_deleted_anything
+
     def _check_if_index_is_in_bound(self, index: int) -> None:
         if index >= self._len:
             raise IndexError(f"{index} index out of range")
