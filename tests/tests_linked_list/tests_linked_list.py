@@ -108,3 +108,38 @@ def test_empty_list_extend(list_empty):
     assert list_empty[0] == 1
     assert list_empty[1] == 2
     assert list_empty[2] == 3
+
+
+def test_empty_list_insert(list_empty):
+    with pytest.raises(IndexError):
+        list_empty.insert(0, 0)
+
+
+def test_list_insert1(list_with_random_data):
+    for _ in range(6):
+        list_with_random_data.insert(-1, 1)
+    assert list_with_random_data[0] == 1
+    assert list_with_random_data[1] == 1
+    assert list_with_random_data[2] == 1
+    assert list_with_random_data[3] == 1
+    assert list_with_random_data[4] == 1
+    assert list_with_random_data[6] == 1
+    assert list_with_random_data[7] == 2
+    assert list_with_random_data[8] == 3
+    assert list_with_random_data[9] == 4
+    assert list_with_random_data[10] == 5
+
+
+def test_list_insert2(list_with_random_data):
+    for _ in range(6):
+        list_with_random_data.insert(0, 2)
+    assert list_with_random_data[0] == 1
+    assert list_with_random_data[1] == 2
+    assert list_with_random_data[2] == 2
+    assert list_with_random_data[3] == 2
+    assert list_with_random_data[4] == 2
+    assert list_with_random_data[6] == 2
+    assert list_with_random_data[7] == 2
+    assert list_with_random_data[8] == 3
+    assert list_with_random_data[9] == 4
+    assert list_with_random_data[10] == 5
