@@ -143,3 +143,22 @@ def test_list_insert2(list_with_random_data):
     assert list_with_random_data[8] == 3
     assert list_with_random_data[9] == 4
     assert list_with_random_data[10] == 5
+
+
+def test_list_remove1(list_with_random_data):
+    list_with_random_data.remove(1)
+    assert list_with_random_data[0] == 2
+    assert list_with_random_data[1] == 3
+    assert list_with_random_data[2] == 4
+    assert list_with_random_data[3] == 5
+
+
+def test_list_remove_append(list_with_random_data):
+    list_with_random_data.remove(5)
+    list_with_random_data.append(5)
+    assert list_with_random_data[0] == 1
+    assert list_with_random_data[1] == 2
+    assert list_with_random_data[2] == 3
+    assert list_with_random_data[3] == 4
+    assert list_with_random_data[4] == 5
+

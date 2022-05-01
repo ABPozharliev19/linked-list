@@ -103,9 +103,6 @@ class LinkedList:
         for item in contents:
             self.append(item)
 
-    def index(self, index: int) -> int:
-        pass
-
     def insert(self, index: int, element: Any) -> None:
         self._check_if_index_is_integer(index)
 
